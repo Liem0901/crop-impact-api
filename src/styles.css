@@ -118,6 +118,10 @@ h2 {
   gap: 14px;
 }
 
+.gridFull {
+  grid-column: 1 / -1;
+}
+
 @media (min-width: 920px) {
   .grid {
     grid-template-columns: 1fr 1fr;
@@ -218,8 +222,9 @@ select {
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .btn,
@@ -227,9 +232,18 @@ select {
   appearance: none;
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 12px 20px;
+  font-size: 14px;
   font-weight: 650;
   cursor: pointer;
+  flex: 1 1 0;
+  min-width: 140px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: opacity 0.15s, filter 0.15s;
 }
 
 .btn {
@@ -238,15 +252,41 @@ select {
   color: white;
 }
 
+.btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
 .btn:disabled {
-  opacity: 0.65;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
 .btnSecondary {
-  background: rgba(0, 0, 0, 0.18);
+  background: var(--panel2);
   color: var(--text);
   text-decoration: none;
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.iconBtn {
+  flex: 0 0 auto;
+  min-width: 44px;
+  width: 44px;
+  padding: 12px 0;
+  font-size: 16px;
+}
+
+.iconBtnSuccess {
+  background: rgba(52, 211, 153, 0.22);
+  border-color: rgba(52, 211, 153, 0.55);
+}
+
+.iconBtnSuccess:hover:not(:disabled) {
+  background: rgba(52, 211, 153, 0.28);
 }
 
 .examples {
@@ -265,20 +305,26 @@ select {
 .chip,
 .chipDanger {
   border-radius: 999px;
-  padding: 8px 10px;
+  padding: 7px 14px;
   border: 1px solid var(--border);
   background: rgba(0, 0, 0, 0.18);
   color: var(--text);
   cursor: pointer;
   font-size: 12.5px;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .chip:hover {
   border-color: rgba(52, 211, 153, 0.55);
+  background: rgba(52, 211, 153, 0.07);
 }
 
 .chipDanger {
   border-color: rgba(251, 113, 133, 0.5);
+}
+
+.chipDanger:hover {
+  background: rgba(251, 113, 133, 0.1);
 }
 
 .pre {
@@ -291,6 +337,20 @@ select {
   max-height: 520px;
   font-size: 12.5px;
   line-height: 1.4;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.85);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error {
